@@ -1,12 +1,9 @@
 using UnityEngine;
-using Unity.Cinemachine;
 public class Controller : MonoBehaviour
 {
     public Transform orientation;
     Vector2 movementInput;
-    Vector3 moveDirection;
     private PlayerControls inputActions;
-    public CinemachineCamera cinemachine;
     private bool jumpPressed;
     private bool sprintHeld;
     private void Awake()
@@ -20,18 +17,16 @@ public class Controller : MonoBehaviour
         inputActions.Player.Sprint.performed += ctx => sprintHeld = true;
         inputActions.Player.Sprint.canceled += ctx => sprintHeld = false;
     }
-
     private void OnEnable() => inputActions.Enable();
     private void OnDisable() => inputActions.Disable();
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        cinemachine = FindFirstObjectByType<CinemachineCamera>();
     }
     public Vector3 GetMovementDirection()
     {
-        moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
+        var moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
         return moveDirection.normalized;
     }
 }

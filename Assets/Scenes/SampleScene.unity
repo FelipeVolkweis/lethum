@@ -958,7 +958,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1919158278}
   - component: {fileID: 1919158277}
+  - component: {fileID: 1919158281}
   - component: {fileID: 1919158279}
+  - component: {fileID: 1919158280}
+  - component: {fileID: 1919158282}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1023,18 +1026,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d640cbf61395d0a49957c2b363a6b6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  sprintSpeed: 7
-  groundDrag: 10
-  jumpForce: 5
-  jumpCooldown: 0.1
-  airMultiplier: 0.01
-  playerHeight: 2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1
   orientation: {fileID: 1544989}
-  state: 0
+--- !u!114 &1919158280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919158276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76fef3e1ee6f6042b94e6f05f99f4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1544989}
+--- !u!114 &1919158281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919158276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d045a8bb45aa29bb30628b26a21edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHeight: 2
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &1919158282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919158276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3985078ea60428e8addbda385f3693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 25
+  acceleration: 50
+  groundDrag: 4
+  airDrag: 0.5
+  jumpForce: 10
+  body: {fileID: 1919158277}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,10 +4,10 @@ public interface IPredicate
     bool Evaluate();
 }
 
-public abstract class FuncPredicate : IPredicate
+public class FuncPredicate : IPredicate
 {
     readonly Func<bool> func;
-    protected FuncPredicate(Func<bool> func)
+    public FuncPredicate(Func<bool> func)
     {
         this.func = func;
     }
