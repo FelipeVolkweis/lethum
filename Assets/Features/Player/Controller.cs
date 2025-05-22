@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour
         inputActions.Player.Move.canceled += ctx => movementInput = Vector2.zero;
 
         inputActions.Player.Jump.performed += ctx => jumpPressed = true;
+        inputActions.Player.Jump.canceled += ctx => jumpPressed = false;
         inputActions.Player.Sprint.performed += ctx => sprintHeld = true;
         inputActions.Player.Sprint.canceled += ctx => sprintHeld = false;
     }
@@ -29,4 +30,6 @@ public class Controller : MonoBehaviour
         var moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
         return moveDirection.normalized;
     }
+    public bool IsJumpPressed() => jumpPressed;
+    public bool IsSprinting() => sprintHeld;
 }

@@ -2,19 +2,31 @@ using UnityEngine;
 
 public class MovementModel : MonoBehaviour
 {
-    public float moveSpeed;
+    [Header("Movement Settings")]
+    public float runningSpeed;
+    public float sprintingSpeed;
+    public float airMoveSpeed;
     public float acceleration;
+    public float turningSpeed;
     public float groundDrag;
     public float airDrag;
     public float jumpForce;
+    public float fallMultiplier;
+
+    [Header("References")]
     public Rigidbody body;
     public void Reset()
     {
-        moveSpeed = 25f;
+        runningSpeed = 15f;
+        sprintingSpeed = 25f;
+        airMoveSpeed = 10f;
         acceleration = 50f;
+        turningSpeed = 8f;
         groundDrag = 4f;
         airDrag = 0.5f;
         jumpForce = 10f;
+        fallMultiplier = 2.5f;
+        body = GetComponent<Rigidbody>();
     }
     public void Start()
     {
@@ -29,10 +41,21 @@ public class MovementModel : MonoBehaviour
 
         body.AddForce(accel * body.mass, ForceMode.Force);
     }
+    public void TurnTo(Vector3 direction)
+    {
+        if (direction == Vector3.zero) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turningSpeed);
+    }
     public void Jump()
     {
         body.linearVelocity = new Vector3(body.linearVelocity.x, 0f, body.linearVelocity.z);
         body.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    public void Fall()
+    {
+        body.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
     }
     public void ApplyGroundDrag()
     {
