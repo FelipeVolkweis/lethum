@@ -13,7 +13,7 @@ public class Falling : State
     public override void FixedUpdate()
     {
         float speed = Math.Max(maxSpeed, movementModel.airMoveSpeed);
-        movementModel.TurnTo(controller.GetMovementDirection());
+        movementModel.TurnTo(controller.GetMovementDirection(), movementModel.airTurningSpeed);
         movementModel.MoveTo(controller.GetMovementDirection(), speed);
         movementModel.Fall();
     }

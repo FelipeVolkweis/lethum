@@ -7,7 +7,8 @@ public class MovementModel : MonoBehaviour
     public float sprintingSpeed;
     public float airMoveSpeed;
     public float acceleration;
-    public float turningSpeed;
+    public float groundTurningSpeed;
+    public float airTurningSpeed;
     public float groundDrag;
     public float airDrag;
     public float jumpForce;
@@ -21,7 +22,8 @@ public class MovementModel : MonoBehaviour
         sprintingSpeed = 25f;
         airMoveSpeed = 10f;
         acceleration = 50f;
-        turningSpeed = 8f;
+        groundTurningSpeed = 8f;
+        airTurningSpeed = 4f;
         groundDrag = 4f;
         airDrag = 0.5f;
         jumpForce = 10f;
@@ -41,7 +43,7 @@ public class MovementModel : MonoBehaviour
 
         body.AddForce(accel * body.mass, ForceMode.Force);
     }
-    public void TurnTo(Vector3 direction)
+    public void TurnTo(Vector3 direction, float turningSpeed)
     {
         if (direction == Vector3.zero) return;
 
